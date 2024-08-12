@@ -34,5 +34,4 @@ elif authentication_status:
         st.success('Bienvenido {}'.format(name))
     with col2:
         authenticator.logout('Logout', 'main')
-    st.write(f'Welcome *{name}*')
     st.title('Some content')
