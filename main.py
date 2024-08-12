@@ -35,3 +35,4 @@ elif authentication_status:
     with col2:
         authenticator.logout('Logout', 'main')
     st.title('Some content')
+    st.title('Some content next')
