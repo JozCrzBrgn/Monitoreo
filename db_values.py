@@ -108,3 +108,18 @@ def ventas_sucursales():
         'Panti': df_panti['Ventas'].sum()
     }
     return ventas_df_dic, ventas_sum_dic
+
+
+def diccionario_categorias():
+    # Obtener los valores de las tablas
+    data = config.supabase.table(config.TAB_PRODUCTOS).select("productos, categoria").execute().data
+    # lo hacemos diccionario
+    data_dic = {d['productos']: d['categoria'] for d in data}
+    # Crear un nuevo diccionario para agrupar productos por categorías
+    productos_por_categoria = {}
+    # Agrupar productos por categorías
+    for producto, categoria in data_dic.items():
+        if categoria not in productos_por_categoria:
+            productos_por_categoria[categoria] = []
+        productos_por_categoria[categoria].append(producto)
+    return productos_por_categoria
