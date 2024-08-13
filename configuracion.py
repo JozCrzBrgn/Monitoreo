@@ -11,6 +11,7 @@ class Configuracion:
         self.BUCKET_GENERAL = st.secrets["BUCKET_GENERAL"]
         self.CREDENCIALES_FILE = st.secrets["CREDENCIALES_FILE"]
         self.TAB_SECRETOS = st.secrets["TAB_SECRETOS"]
+        self.TAB_PRODUCTOS = st.secrets["TAB_PRODUCTOS"]
 config = Configuracion()
 
 
