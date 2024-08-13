@@ -12,9 +12,9 @@ def crear_credenciales():
         return contenido_sin_comentarios_espacios
 
 
-    names = ["Tania Cruz", "Rebecca Briggs", "Josue Cruz"]
-    usernames = ["tania", "rbriggs", "josue"]
-    passwords = ["abc123", "pass456", "pass789"]
+    names = ["Tania Cruz", "Elvia Castillo", "Josue Cruz"]
+    usernames = ["tania", "elvia", "josue"]
+    passwords = ["taniapass67319", "supervisora_elvia", "1reliquia1"]
     hashed_passwords = stauth.Hasher(passwords).generate()
 
     contenido = f"""{{
