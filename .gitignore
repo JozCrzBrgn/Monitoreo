@@ -1,3 +1,9 @@
+# Secrets
+secrets/
+
+# Ambiente Virtual
 venv/
+
+# Credenciales
 credenciales.json
 secrets.toml
