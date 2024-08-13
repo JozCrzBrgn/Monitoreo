@@ -38,7 +38,6 @@ def grafico_barras(df):
     return st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
 def grafico_velocimetro(ventas_actuales, ventas_objetivo):
-    #color = "green" if ventas_actuales >= ventas_objetivo else "red"
     if ventas_actuales >= ventas_objetivo:
         color = "green"
     elif ventas_actuales >= ventas_objetivo/2:
