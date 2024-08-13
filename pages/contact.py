@@ -5,15 +5,12 @@ import streamlit_authenticator as stauth
 from configuracion import config
 from configuracion import read_json_from_supabase
 
-
-
 st.set_page_config(
-    page_title="MonitoreoNarcisse",
+    page_title="Metas",
     page_icon=":bar_chart:",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 
 #* USER AUTHENTICATION
 credenciales = read_json_from_supabase(config.BUCKET_GENERAL, config.CREDENCIALES_FILE)
@@ -35,7 +32,7 @@ elif authentication_status:
         st.success('Bienvenido {}'.format(name))
     with col2:
         authenticator.logout('Logout', 'main')
-    
-    st.title("Main")
+
+    st.title("Contact")
 
     st.write("En construccion...")
