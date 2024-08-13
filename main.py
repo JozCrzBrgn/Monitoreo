@@ -8,7 +8,7 @@ from configuracion import read_json_from_supabase
 
 
 st.set_page_config(
-    page_title="MonitoreoNarcisse",
+    page_title="Monitoreo Narcisse",
     page_icon=":bar_chart:",
     layout="wide",
     initial_sidebar_state="expanded"
