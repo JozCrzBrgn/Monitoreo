@@ -39,14 +39,27 @@ elif authentication_status:
     st.title("Pedidos por sucursal")
 
     productos_por_categoria = diccionario_categorias()
-    total_sum = i = j = 0
-    mi_values = []
-    for category, value in productos_por_categoria.items():
-        subtitulos(f"Categoria: {category}", "grey")
-        for producto in value:
-            mi_values.append(st.number_input(f"{producto}"))
-        # Calcular la suma de los valores
-        mi_value = sum(mi_values)
-    total_sum += mi_value
+    total_sum = 0
+    productos_con_valor_mayor_a_cero = []
 
-    st.write("The total sum is:", total_sum)
+    for category, productos in productos_por_categoria.items():
+        st.subheader(f"Categoría: {category}")
+        mi_values = []  # Lista para almacenar los valores ingresados por producto en cada categoría
+        for producto in productos:
+            valor_producto = st.number_input(f"{producto}", min_value=0.0, format="%.2f")
+            if valor_producto > 0:
+                productos_con_valor_mayor_a_cero.append([producto, valor_producto])
+            mi_values.append(valor_producto)
+
+        # Calcular la suma de los valores de esta categoría
+        mi_value = sum(mi_values)
+        total_sum += mi_value
+
+    # Mostrar la suma total
+    st.write("La suma total es:", total_sum)
+
+    # Mostrar productos con valor mayor a cero
+    if productos_con_valor_mayor_a_cero:
+        st.write("Productos con valor mayor a cero:", productos_con_valor_mayor_a_cero)
+    else:
+        st.write("No hay productos con valor mayor a cero.")
