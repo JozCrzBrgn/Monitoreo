@@ -7,6 +7,7 @@ from configuracion import read_json_from_supabase
 
 from db_values import diccionario_categorias
 from custom_widgets import subtitulos
+from pdf import descargar_pdf
 
 st.set_page_config(
     page_title="Metas",
@@ -46,7 +47,7 @@ elif authentication_status:
         st.subheader(f"Categoría: {category}")
         mi_values = []  # Lista para almacenar los valores ingresados por producto en cada categoría
         for producto in productos:
-            valor_producto = st.number_input(f"{producto}", min_value=0.0, format="%.2f")
+            valor_producto = st.number_input(f"{producto}", min_value=0, step=1)
             if valor_producto > 0:
                 productos_con_valor_mayor_a_cero.append([producto, valor_producto])
             mi_values.append(valor_producto)
@@ -61,5 +62,25 @@ elif authentication_status:
     # Mostrar productos con valor mayor a cero
     if productos_con_valor_mayor_a_cero:
         st.write("Productos con valor mayor a cero:", productos_con_valor_mayor_a_cero)
+        nombre_sucursal = st.selectbox(
+            "Sucursal",
+            ("Agricola Oriental", "Nezahualcóyotl", "Zapotitlan", "Oaxtepec", "Pantitlan"),
+        )
+
+        fecha_pedido = st.date_input("Fecha de pedido")
+        fecha_pedido_str = fecha_pedido.strftime("%Y-%m-%d")
+
+        fecha_entrega = st.date_input("Fecha de entrega")
+        fecha_entrega_str = fecha_entrega.strftime("%Y-%m-%d")
+
+        clave ='XX0001'
+
+        pdf_data = descargar_pdf(nombre_sucursal, clave, fecha_pedido_str, fecha_entrega_str, productos_con_valor_mayor_a_cero)
+        st.download_button(
+            label="Descargar PDF",
+            data=pdf_data,
+            file_name=f"Pedido_{clave}_{fecha_pedido}.pdf",
+            mime="application/pdf"
+        )
     else:
         st.write("No hay productos con valor mayor a cero.")
