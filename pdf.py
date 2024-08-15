@@ -18,8 +18,17 @@ IMAGE_PDF = {
     "Pantitlan":"./assets/pdf_panti.png"
 }
 
+EMPLEADO_LEVANTA = {
+    "Agricola Oriental":"ELVIA CASTILLO ALANIZ",
+    "Nezahualcóyotl":"HILDA CABRERA ALBA",
+    "Zapotitlan":"ERICKA HUITZIL MENDEZ",
+    "Oaxtepec":"THALIA ROMERO",
+    "Pantitlan":"DOÑA ELY"
+}
 
-def descargar_pdf(NOMBRE_SUCURSAL, clave, fecha_pedido, fecha_entrega, empleado_levanta, producto_cantidad):
+
+def descargar_pdf(NOMBRE_SUCURSAL, clave, fecha_pedido, fecha_entrega, producto_cantidad):
+
     class PDF(FPDF):
         def header(self):
             # Colocamos el logo:
@@ -75,7 +84,7 @@ def descargar_pdf(NOMBRE_SUCURSAL, clave, fecha_pedido, fecha_entrega, empleado_
     pdf.set_fill_color(217, 217, 217)
     pdf.set_font('helvetica', 'B', 10)
     pdf.cell(w=80, h=6, text="NOMBRE DE QUIEN REALIZA EL PEDIDO:", border=0, align='L', fill=1)
-    pdf.multi_cell(w=0, h=6, text= '   ' + empleado_levanta, border=0, align='L', fill=0)
+    pdf.multi_cell(w=0, h=6, text= '   ' + EMPLEADO_LEVANTA[NOMBRE_SUCURSAL], border=0, align='L', fill=0)
     pdf.ln(3)
     pdf.cell(w=40, h=6, text="FECHA DE SOLICITUD:", border=0, align='L', fill=1)
     pdf.cell(w=60, h=6, text='   '+ fecha_pedido, border=0, align='L', fill=0)
@@ -106,10 +115,5 @@ def descargar_pdf(NOMBRE_SUCURSAL, clave, fecha_pedido, fecha_entrega, empleado_
     #############
     # CREAR PDF #
     #############
-    if not os.path.exists('.\\Pedidos PDFs'):
-        try:
-            os.makedirs('.\\Pedidos PDFs')
-        except:
-            pass
-    nombre_archivo = f"Pedido_{clave}_{str(fecha_pedido)}.pdf"
-    return pdf.output(os.path.join('.\\Pedidos PDFs', nombre_archivo))
+    pdf_output = pdf.output(dest='S')
+    return bytes(pdf_output)
