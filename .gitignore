@@ -1,5 +1,6 @@
 # Secrets
 secrets/
+*.txt
 
 # Ambiente Virtual
 venv/
