@@ -42,13 +42,11 @@ elif authentication_status:
     total_sum = i = j = 0
     mi_values = []
     for category, value in productos_por_categoria.items():
-        j+=1
         subtitulos(f"Categoria: {category}", "grey")
         for producto in value:
-            i+=1
             mi_values.append(st.number_input(f"{producto}"))
         # Calcular la suma de los valores
         mi_value = sum(mi_values)
-        total_sum += mi_value
+    total_sum += mi_value
 
     st.write("The total sum is:", total_sum)
