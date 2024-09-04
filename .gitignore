@@ -1,6 +1,6 @@
 # Secrets
-secrets/
-*.txt
+my_secrets/
+shotcuts.txt
 
 # Ambiente Virtual
 venv/
