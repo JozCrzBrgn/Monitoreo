@@ -36,17 +36,13 @@ def ventas_sucursales():
         df_ab = pd.DataFrame(data_ab)
         df_tk = pd.DataFrame(data_tk)
         # Verificamos si el dataframe esta vacio
-        if df_ab.empty:
-            continue
-        else:
+        if df_ab.empty == False:
             # Quitamos los acentos de la columna sucursal
             df_ab['sucursal'] = df_ab['sucursal'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
             # Agregar el dataframe a la lista
             dfs_ab.append(df_ab)
         # Verificamos si el dataframe esta vacio
-        if df_tk.empty:
-            continue
-        else:
+        if df_tk.empty == False:
             # Quitamos los acentos de la columna sucursal
             df_tk['sucursal'] = df_tk['sucursal'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
             # Agregar el dataframe a la lista
