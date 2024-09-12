@@ -2,6 +2,8 @@
 import streamlit as st
 import streamlit_authenticator as stauth
 
+import ConectorPython
+
 from configuracion import config
 from configuracion import read_json_from_supabase
 
@@ -33,6 +35,18 @@ elif authentication_status:
     with col2:
         authenticator.logout('Logout', 'main')
 
-    st.title("Contact")
+    st.title("Test imprimir")
 
-    st.write("En construccion...")
+    def imprimir():
+        nombreImpresora = "WL88S"
+        conector = ConectorPython.ConectorV3(serial=config.SERIAL)
+        conector.Iniciar()
+        conector.EscribirTexto("Hola mundo")
+        conector.Feed(1)
+        conector.Corte(1)
+        respuesta = conector.imprimirEn(nombreImpresora)
+        return respuesta
+    
+    if st.button("Imprimir"):
+        resultado = imprimir()
+        st.write("Resultado de la impresión:", resultado)
